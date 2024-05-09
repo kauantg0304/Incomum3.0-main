@@ -190,7 +190,7 @@ class IncomumAgencia(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'incomum_agencia'
+        db_table = 'agencia'
 
 
 class IncomumAgente(models.Model):
@@ -201,17 +201,9 @@ class IncomumAgente(models.Model):
 
     class Meta:
         managed = True
-        db_table = 'incomum_agente'
+        db_table = 'agente'
 
 
-class IncomumUsuario(models.Model):
-    nome = models.TextField()
-    email = models.CharField(max_length=255)
-    senha = models.CharField(max_length=255)
-
-    class Meta:
-        managed = True
-        db_table = 'incomum_usuario'
 
 
 class Turisticosituacao(models.Model):
