@@ -380,67 +380,64 @@
         </script>
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $('#cadastro').submit(function(event) {
-                        event.preventDefault();  // Impede o comportamento padrão do formulário
-        
-                        $.ajax({
-                            type: 'POST',
-                            url: '{% url "relacao" age_codigo=agencia.age_codigo %}',
-                            data: $(this).serialize(),
-                            success: function(data) {
-                                $('#confirmodal').modal('show');
-                                $('#closemodals').click(function() {
-                                    $('#confirmodal').modal('hide');
-                                });
-                                // Lógica para o que fazer após o sucesso
-                            },
-                            error: function(data) {
-                                // Lógica para o que fazer em caso de erro
-                            }
-                        });
+<script>
+    $(document).ready(function() {
+        $('#cadastro').submit(function(event) {
+            event.preventDefault();  // Impede o comportamento padrão do formulário
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "relacao" age_codigo=agencia.age_codigo %}',
+                data: $(this).serialize(),
+                success: function(data) {
+                    // Lógica para o que fazer após o sucesso
+                    $('#confirmodal').modal('show');
+                    $('#closemodals').click(function() {
+                        $('#confirmodal').modal('hide');
                     });
-                });
-            </script>
-            <script>
-                    $(document).ready(function() {
-                        $('#tst').click(function() {
-                            $('#minha_caixa').modal('show');  // Abre o modal
-                            $.ajax({
-                                url: '{% url "consulta" %}',
-                                type: 'GET',
-                                dataType: 'json',
-                                success: function(data) {
-                                    // Limpa a lista de cadastros existente
-                                    $('#tabela tbody').empty();
-                                    // Adiciona os novos cadastros ao modal
-                                    for (let cadastro of data.novos_cadastros) {
-                                        if (cadastro.age_codigo ) {
-                                            let url = '/relacao/' + cadastro.age_codigo;
-                                            let linha = '<tr>' +
-                                                        '<td><a style="text-decoration: none; color: black;" href="'+ url + '">' + cadastro.age_codigo + '</a></td>' +
-                                                        '<td>' + cadastro.age_cnpj + '</td>' +
-                                                        '<td>' + cadastro.age_inscricaomunicipal + '</td>' +
-                                                        '<td>' + cadastro.age_observacao + '</td>' +
-                                                    '</tr>';
-                                            $('#tabela tbody').append(linha);
-                                        }
-                                    }
-                                },
-                                error: function(error) {
-                                    console.log(error);
-                                }
-                            });
-                        });
-                
-                        // Fecha o modal quando o botão de fechar é clicado
-                        $('.fechar_modal').click(function() {
-                            $('#minha_caixa').hide();
-                        });
-                    });
-                   
-        </script>
+                },
+                error: function(data) {
+                    // Lógica para o que fazer em caso de erro
+                }
+            });
+        });
+
+        $('#tst').click(function() {
+            $('#minha_caixa').modal('show');  // Abre o modal
+            $.ajax({
+                url: '{% url "consulta" %}',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Limpa a lista de cadastros existente
+                    $('#tabela tbody').empty();
+                    // Adiciona os novos cadastros ao modal
+                    for (let cadastro of data.novos_cadastros) {
+                        if (cadastro.age_codigo) {
+                            let url = '/relacao/' + cadastro.age_codigo;
+                            let linha = '<tr>' +
+                                '<td><a style="text-decoration: none; color: black;" href="' + url + '">' + cadastro.age_codigo + '</a></td>' +
+                                '<td>' + cadastro.age_cnpj + '</td>' +
+                                '<td>' + cadastro.age_inscricaomunicipal + '</td>' +
+                                '<td>' + cadastro.age_observacao + '</td>' +
+                                '</tr>';
+                            $('#tabela tbody').append(linha);
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        // Fecha o modal quando o botão de fechar é clicado
+        $('.fechar_modal').click(function() {
+            $('#minha_caixa').hide();
+        });
+    });
+</script>
+
 <script>
     $(document).ready(function() {
         var consultaEmAndamento = false;
