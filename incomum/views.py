@@ -212,14 +212,15 @@ def faturamento(request):
         # Execute a consulta SQL personalizada
         with connection.cursor() as cursor:
             cursor.execute("""
-                SELECT DATE_FORMAT(fim_data, '%m/%Y') AS mes_ano,
-                       faturamentosimplificado.loj_codigo,
-                       loj_descricao,
-                       SUM(fim_valorliquido) AS soma_valorliquido,
-                       SUM(fim_valorinc) AS soma_valorinc
-                FROM faturamentosimplificado
-                WHERE fim_codigo < 100
-                GROUP BY mes_ano, faturamentosimplificado.loj_codigo, loj_descricao
+                SELECT TO_CHAR(fim_data, 'MM/YYYY') AS mes_ano,
+                    faturamentosimplificado.loj_codigo,
+                    loj_descricao,
+                    SUM(fim_valorliquido) AS soma_valorliquido,
+                    SUM(fim_valorinc) AS soma_valorinc
+                    FROM faturamentosimplificado
+                    WHERE fim_codigo < 100
+                    GROUP BY TO_CHAR(fim_data, 'MM/YYYY'), faturamentosimplificado.loj_codigo, loj_descricao;
+
             """)
             resultados = cursor.fetchall()
         
