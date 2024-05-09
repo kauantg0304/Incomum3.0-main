@@ -1,0 +1,292 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incomum Viagens</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tst.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</head>
+<body style="overflow: auto; background-color: rgba(31,23,23,0.05) !important;">
+            <div class="modal fade" id="sairmodal" tabindex="-1" role="dialog" aria-labelledby="sairmodalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 style="margin-left: 20px; color:#0152a1;" class="modal-title" id="sairmodalLabel">Confirmar Logout</h5>
+                    <button id="closemodal" style="background-color:white;border:none;margin-top:-19px;" type="button" class="close" data-dismiss="modal" aria-label="Fechar" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                        <div style=" width:100%; height:70px;border-radius:10px;">
+                            <div style="padding-top:20px;padding-left:20px;">
+                                <span>Tem certeza de que deseja sair?</span>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn btn-secondary" style="width:100px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important;height:28px;font-size: 11px !important; font-weight: bold;" href="{% url 'logout' %}" >Sair</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+
+
+    <section>
+
+        <div class="menu">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary" style="background-color: #0152a1 !important;height: 40.5px;">
+
+
+
+                <div class="collapse navbar-collapse " id="nav-menus"  >
+
+                    <div class="navbar-nav " id="navbarNav">
+
+                        <a id="sair" href="#" style="height: 34px !important; background-color: #0152a1 !important; border: #e87717 !important; margin-left: 1220px;" class="btn btn-primary">Logout</a>
+
+                    </div>
+                </div>
+
+
+            </nav>
+
+        </div>
+
+    </section>
+        <div  id="mySidebar" class="sidebar" style="height:100vh !important;">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img src="{% static 'img/logo.png' %}"class="logo" style=" margin-left: 5px; width: 240px;">
+            <ul class="list-unstyled ps-0">
+                <li style="margin-top: 30px;" class="mb-1"><i class="input-icon uil uil-home" style="color: #e87717; position: relative;margin-right: 8px; margin-top: 2px;"></i>
+                <button style="color: #0152a1 !important;font-size: 16px !important; margin-top: -4px;border:none;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                    Home
+                </button>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-comment-alt-upload" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                    <button style="color: #0152a1 !important;font-size: 16px !important; margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                    Cadastro
+                    </button>
+                    <div class="collapse" id="dashboard-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url "agencia" %}" class="link-dark rounded" style="color:#0152a1 !important;">Agência</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-comment-edit" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                    <button style="color: #0152a1 !important; font-size: 16px !important;margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#lancamento-collapse" aria-expanded="false">
+                    Lançamentos
+                    </button>
+                    <div class="collapse" id="lancamento-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-dark rounded" style="color:#0152a1 !important;">Opção</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-usd-circle" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                    <button style="color: #0152a1 !important;font-size: 16px !important;margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#financeiro-collapse" aria-expanded="false">
+                    Financeiro
+                    </button>
+                    <div class="collapse" id="financeiro-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-dark rounded" style="color:#0152a1 !important;">Opção</a></li>
+
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-suitcase-alt" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                <button style="color: #0152a1 !important;font-size: 16px !important; margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#gerencial-collapse" aria-expanded="false">
+                    Gerencial
+                </button>
+                <div class="collapse" id="gerencial-collapse">
+                    <div class="collapse" id="gerencial-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'faturamento' %}" class="link-dark rounded" style="color:#0152a1 !important;">Faturamento Unidade</a></li>
+                        </ul>
+                    </div>
+                </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-receipt-alt" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                <button style="color: #0152a1 !important;font-size: 16px !important;margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                    Relatorios
+                </button>
+                <div style="background-color: rgba(31,23,23,0.02) " class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="background-color:white;">
+                    <li><a href="#" class="link-dark rounded" style="color:#0152a1 !important;">Simplificado de Vendas</a></li>
+                    </ul>
+                </div>
+                </li>
+                </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+            <button style="background-color: #0152a1 !important; border-radius: 16px !important;" class="openbtn" onclick="openNav()">&#9776;</button>
+        </div>
+        </div>
+        <h3 id="relatorio_h3" style="margin-left: 360px; color:#013e77;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 25px;font-weight: bold;margin-top:-30px;margin-bottom:50px ">Relatorio Simplificado de Vendas</h3>
+        <h4 id="relatorio_h4" style="margin-left:360px;color:#013e77;font-family: Verdana, Arial, Helvetica, sans-serif;font-weight: bold;font-size: 20px;ma">Data de Faturamento</h4>
+        <form id="consultaForm">
+            <input id="startDate" class="form-control" type="date" style="margin-left:360px;width:200px;" name="data_consulta" />
+            <h5 id="ate" style="margin-left:590px;margin-top:-28px;color:#013e77;font-size:16px;">Ate</h5>
+            <input id="endDate" class="form-control" type="date" style="margin-left:650px;width:200px;margin-top:-36px;" name="data_final" />
+            <h5 id="UnidadeH5" style="margin-left:363px;margin-top:14px;color:#013e77;font-size:18px;margin-bottom: auto;">Unidade</h5>
+            <select id="unidade" name="unidade" style="width:200px; margin-left:360px;margin-top:7px;" class="form-select" aria-label="Default select example">
+                <option value="">Unidade</option>
+                <option value="1">FLN</option>
+                <option value="3">BNU</option>
+                <option value="6">POA</option>
+                <option value="9">NTH</option>
+            </select>
+            <h5 id="UnidadeH5" style="margin-left:573px;margin-top:-66px;color:#013e77;font-size:18px;padding-bottom: 30px;">Area Comercial</h5>
+            <select id="area" name="area" style="width:200px; margin-left:570px;margin-top:-31px;" class="form-select" aria-label="Default select example">
+                <option value="V" selected="">TST</option>
+                <option value="F">TST</option>
+            </select>
+            <h5 id="UnidadeH5" style="margin-left:783px;margin-top:-66px;color:#013e77;font-size:18px;padding-bottom: 30px;">Agência</h5>
+            <select id="agen" name="agen" style="width:200px; margin-left:780px;margin-top:-31px" class="form-select" aria-label="Default select example">
+                <option value="V" selected="">TST</option>
+                <option value="F">TST</option>
+            </select>
+            <h5 id="UnidadeH5" style="margin-left:993px;margin-top:-66px;color:#013e77;font-size:18px;padding-bottom: 30px;">Vendedor</h5>
+            <select id="vend" name="vend" style="width:200px; margin-left:990px;margin-top:-31px" class="form-select" aria-label="Default select example">
+                <option value="V" selected="">TST</option>
+                <option value="F">TST</option>
+            </select>
+            <button class="btn btn-light btn-sm" type='submit' style="width:258px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important; margin-left:630px;height:26px;font-size: 11px !important; font-weight: bold;margin-top:15px;" id="pes_rel" hx-select="#minha_caixa" hx-trigger="click"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLongoExemplo" >Pesquisar</button>
+        </form>
+        <a id="exportarExcel" class="btn btn-success" style="font-size: 11px;height: 26px;background-color: #0152a1 !important;margin-top: 0px;margin-left: 360px;">Exportar para Excel</a>
+            <div id="tabelaresp" style="max-height: 300px;">
+                <div class="table-responsive">
+
+                    <table id="tabelaCorpo" class="table" style="margin:auto; width:850px;margin-top:0px !important;margin-left:360px;border-radius:6px;">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="background-color:#0152a1;color:white;">Tipo</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;">Num.Venda</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;">Num.Pct</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;text-align: right;">Vlr Liq Venda</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;text-align: right;">MKP</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;text-align: right;">INC</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;text-align: right;">INC Ajustado</th>
+                                <th scope="col" style="background-color:#0152a1;color:white;">Area Comercial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Conteúdo da tabela aqui -->
+                        </tbody>
+
+                    </table>
+                    <div id="valor" style="position: absolute;margin-left: 360px;background-color:#0152a1;width:850px;heigth:36px;display: none; ">
+                        <p id="soma-valor-liquido" style="height:10px;color:white;font-weight: bold;font-family: Verdana, Arial, Helvetica, sans-serif; margin-left:270px;display: inline-block"></p>
+                        <p id="soma-valor-inc" style="height:10px;color:white;font-weight: bold;font-family: Verdana, Arial, Helvetica, sans-serif; margin-left:100px;display: inline-block"></p>
+                        <p id="soma-valor-incajustado" style="height:10px;color:white;font-weight: bold;font-family: Verdana, Arial, Helvetica, sans-serif; margin-left:40px;display: inline-block"></p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#consultaForm').submit(function(event) {
+                        event.preventDefault();
+                        var dataConsulta = $('#startDate').val();
+                        var dataFinal = $('#endDate').val();
+                        var unidade = $('#unidade').val(); // Captura o valor selecionado para a unidade
+                
+                        $.ajax({
+                            url: '/consulta_relatorio/',
+                            method: 'GET',
+                            data: { data_consulta: dataConsulta, data_final: dataFinal, unidade: unidade }, // Adiciona o valor da unidade à requisição
+                            success: function(response) {
+                                $('#tabelaCorpo tbody').empty();
+                                var somaValorLiquido = response.soma_valorliquido;
+                                $('#soma-valor-liquido').text(somaValorLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 }));
+                                var somaValorInc = response.soma_valorinc;
+                                $('#soma-valor-inc').text(somaValorInc.toLocaleString('pt-BR', { minimumFractionDigits: 2 }));
+                                var somaValorIncajustado = response.soma_valorincajustado;
+                                $('#soma-valor-incajustado').text(somaValorIncajustado.toLocaleString('pt-BR', { minimumFractionDigits: 2 }));
+                                response.resultados.forEach(function(faturamento) {
+                                    var valorLiquidoFormatado = parseFloat(faturamento.fim_valorliquido).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                    var valorIncFormatado = parseFloat(faturamento.fim_valorinc).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                    var valorIncajustadoFormatado = parseFloat(faturamento.fim_valorincajustado).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                    var linha = '<tr>' +
+                                        '<td>' + faturamento.fim_tipo + '</td>' +
+                                        '<td>' + faturamento.tur_numerovenda + '</td>' +
+                                        '<td>' + faturamento.tur_codigo + '</td>' +
+                                        '<td style="text-align: right;">' + valorLiquidoFormatado + '</td>' +
+                                        '<td style="text-align: right;">' + faturamento.fim_markup + '</td>' +
+                                        '<td style="text-align: right;">' + valorIncFormatado + '</td>' +
+                                        '<td style="text-align: right;">' + valorIncajustadoFormatado + '</td>' +
+                                        '<td>' + faturamento.aco_descricao + '</td>' +
+                                        '</tr>';
+                                    $('#tabelaCorpo tbody').append(linha);
+                                });
+                                $('#valor').show();
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Erro na requisição AJAX:', error);
+                            }
+                        });
+                    });
+                });
+            </script>
+        
+        <script>
+            /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+            function openNav() {
+                document.getElementById("mySidebar").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                
+            }
+            window.addEventListener("load", function() {
+                // Verifica se a largura da janela é maior que 768 pixels (desktop)
+                if (window.innerWidth > 768) {
+                    openNav(); // Chama a função openNav apenas para dispositivos desktop
+                }
+            });
+
+                        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+            function closeNav() {
+                document.getElementById("mySidebar").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+            }
+
+        </script>
+
+            
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $('#sair').click(function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do link
+        $('#sairmodal').modal('show'); // Abre o modal
+      });
+    $('#closemodal').click(function(event) {
+        $('#sairmodal').modal('hide'); // Fecha o modal
+      });
+    });
+</script>
+ <script>
+    $(document).ready(function() {
+        $('#exportarExcel').click(function() {
+            var dataConsulta = $('#startDate').val();
+            var dataFinal = $('#endDate').val();
+            var url = "{% url 'exportar_excel' %}?data_consulta=" + dataConsulta + "&data_final=" + dataFinal;
+            window.location.href = url;
+        });
+    });
+</script>

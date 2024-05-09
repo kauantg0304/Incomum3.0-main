@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incomum Viagens</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+</head>
+<body style="overflow: auto;">
+    <div class="header">
+
+        <section class="limite-pagina container"style="margin-right: 188px;width:100%;" >
+          
+
+            <nav class="navbar navbar-expand-lg navbar-light .bg-transparent" >
+              
+
+                <a class="navbar-brand" href="home">
+                    <img src="{% static 'img/logo (1).png' %}"class="logo" style=" margin-left: 5px;">
+                    <img src="{% static 'img/25anos.jpg' %}" style="width: 115px; margin-left: 1px;">
+                </a>
+                <h4 style="margin-left: 300px; font-size: 14px;color: #e87717;margin-top: 45px;">Viagem 2.0 - Software de Gestão Empresarial</h4>
+                
+
+                <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#nav-menus" aria-controls="nav-menus" aria-expanded="false" aria-label="Alterna navegação">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                                
+                                                            
+                        
+
+
+
+                </ul>
+
+            </nav>
+
+        </section>
+
+    </div>
+    <section>
+
+        <div class="menu">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary" style="background-color: #0152a1 !important;height: 40.5px;">
+
+
+
+                <div class="collapse navbar-collapse " id="nav-menus"  >
+
+                    <div class="navbar-nav " id="navbarNav">
+
+
+                    </div>
+
+                </div>
+
+
+            </nav>
+
+        </div>
+
+    </section>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark" >
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">Menu</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Cadastros</span> </a>
+                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Agência</span> </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Assinatura</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Lançamentos</span></a>
+                        </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Financeiro</span></a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Opção</span> 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Opção</span> 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Gerencial</span> </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Opção</span> 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Opção</span> 2</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Opção</span> 3</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0" style="color: #e87717;"> <span class="d-none d-sm-inline">Opção</span> 4</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Relatorios</span> </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="d-none d-sm-inline mx-1">Usuário</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                            <li><a class="dropdown-item" href="logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 80%; height: 711px; " >
+                <form action="?" method="get">
+         
+                    <input style="width: 200px; margin-left: 350px;margin-top: 30px;"  type="text" class="form-control" placeholder="Pesquisar" name="consulta" aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{request.GET.consulta}}">
+                    <button style="margin-left: 560px; margin-top: -65px;" class="btn btn-transparent" type="submit">Pesquisar</button>
+
+                </form>
+                <table style="width: 60%; margin: auto; margin-top: 80px;" class="table table-bordered">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Cnpj</th>
+                        <th scope="col">Inscrição</th>
+                        <th scope="col">Observação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for a in page.object_list %}
+                    <tr>
+                        <th scope="row">{{ a.age_codigo }}</th>
+                        <td>{{ a.age_cnpj}}</td>
+                        <td>{{ a.age_inscricaomunicipal}}</td>
+                        <td>{{ a.age_observacao}}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <th>Nenhum</th>
+                        <th>Cadastro</th>
+                        <th>Encontrado</th>
+                        <th>#</th>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% if page.has_previous %}
+                <a style="margin-left: 214px;" href="{% url 'consulta' %}?page={{page.previous_page_number}}">Anterior</a>
+            {% endif %}
+            {% if page.has_next %}
+                <a  style="margin-left: 214px;" href="{% url 'consulta' %}?page={{page.next_page_number}}">Proximo</a>
+            {% endif %}
+
+            </div>
+

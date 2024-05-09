@@ -1,0 +1,483 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incomum Viagens</title>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" media="all" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" media="all" href="{% static 'css/agencia.css' %}">
+    <link rel="stylesheet" media="all" href="{% static 'css/tst.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  
+    <script type="text/javascript" src="{% static 'js/htmx.min.js' %}" defer></script>
+</head>
+<body style="overflow: auto; background-color:rgba(31,23,23,0.05) !important;">
+
+
+        <div class="menu">
+            <nav id="navcima" class="navbar navbar-expand-lg navbar-light bg-primary" style="background-color: #0152a1 !important;height: 40.5px;">
+
+
+                
+                <div class="collapse navbar-collapse " id="nav-menus"  >
+
+                    <div class="navbar-nav " id="navbarNav">
+
+                        <a id="sair" href="#" style="height: 34px !important; background-color: #0152a1 !important; border: #e87717 !important; margin-left: 1220px;" class="btn btn-primary">Logout</a>
+
+                    </div>
+                </div>
+              
+
+            </nav>
+
+        </div>
+
+    </section>
+        <div   id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <img src="{% static 'img/logo.png' %}"class="logo" style=" margin-left: 5px; width: 240px;">
+            <ul class="list-unstyled ps-0">
+                <li style="margin-top: 30px;" class="mb-1"><i class="input-icon uil uil-home" style="color: #e87717; position: relative;margin-right: 8px; margin-top: 2px;"></i>
+                    <a href="{% url 'logado' %}" style="margin-top:-46px;margin-left:14px;height:49.6px;">
+                        <button style="color: #0152a1 !important;font-size: 16px !important; margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+                            Home
+                        </button>
+                    </a>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-comment-alt-upload" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                    <button style="color: #0152a1 !important;font-size: 16px !important; margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                    Cadastro
+                    </button>
+                    <div class="collapse" id="dashboard-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-dark rounded"  style="color:#0152a1 !important;">Agência</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-comment-edit" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                    <button style="color: #0152a1 !important; font-size: 16px !important;margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#lancamento-collapse" aria-expanded="false">
+                    Lançamentos
+                    </button>
+                    <div class="collapse" id="lancamento-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-dark rounded"  style="color:#0152a1 !important;">Opção</a></li>
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-usd-circle" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                    <button style="color: #0152a1 !important;font-size: 16px !important;margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#financeiro-collapse" aria-expanded="false">
+                    Financeiro
+                    </button>
+                    <div class="collapse" id="financeiro-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-dark rounded"  style="color:#0152a1 !important;">Opção</a></li>
+
+                    </ul>
+                    </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-suitcase-alt" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                <button style="color: #0152a1 !important;font-size: 16px !important; margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#gerencial-collapse" aria-expanded="false">
+                    Gerencial
+                </button>
+                <div class="collapse" id="gerencial-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="{% url 'faturamento' %}" class="link-dark rounded" style="color:#0152a1 !important;">Faturamento Unidade</a></li>
+                    </ul>
+                </div>
+                </li>
+                <li class="mb-1"><i class="input-icon uil uil-receipt-alt" style="color: #e87717; position: relative;margin-right: 8px;"></i>
+                <button style="color: #0152a1 !important;font-size: 16px !important;margin-top: -4px;" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                    Relatorios
+                </button>
+                <div style="background-color: rgba(31,23,23,0.02) " class="collapse" id="orders-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="background-color:white;">
+                    <li><a href="{% url 'relatorio' %}" class="link-dark rounded"  style="color:#0152a1 !important;">Simplificado de Vendas</a></li>
+                    </ul>
+                </div>
+                </li>
+                </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+            <button style="background-color: #0152a1 !important; border-radius: 16px !important;" class="openbtn" onclick="openNav()">&#9776;</button>
+        </div>
+        </div>
+        <script async>
+            /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+                function openNav() {
+                    document.getElementById("mySidebar").style.width = "250px";
+                    document.getElementById("main").style.marginLeft = "250px";
+                }
+
+            /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+                function closeNav() {
+                    document.getElementById("mySidebar").style.width = "0";
+                    document.getElementById("main").style.marginLeft = "0";
+        }
+            window.onload = function() {
+                // Verificar se a largura da janela é maior que 768 pixels (desktop)
+                if (window.innerWidth > 768) {
+                    openNav(); // Chama a função openNav apenas para dispositivos desktop
+                }
+            };
+        </script>
+            <div class="modal fade" id="sairmodal" tabindex="-1" role="dialog" aria-labelledby="sairmodalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 style="margin-left: 20px; color:#0152a1;" class="modal-title" id="sairmodalLabel">Confirmar Logout</h5>
+                    <button style="background-color:white;border:none;margin-top:-19px;" type="button" class="close" data-dismiss="modal" aria-label="Fechar" id="closemodal" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                        <div style=" width:100%; height:70px;border-radius:10px;">
+                            <div style="padding-top:20px;padding-left:20px;">
+                                <span>Tem certeza de que deseja sair?</span>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <a class="btn btn-secondary" style="width:100px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important;height:28px;font-size: 11px !important; font-weight: bold;" href="{% url 'logout' %}" >Sair</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pai" style=" margin-right: -80px; width: 80%; margin-top:-70px;" class="container-fluid px-1 py-5 mx-auto">
+                <div class="row d-flex justify-content-center">
+                    <div style="margin-right:120px;"  class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                        <h3 id="h3agente" style="margin-right: 394px; color:#013e77;font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 25px;font-weight: bold; ">Cadastro Agência</h3>
+                        <div id="centro" style=" box-shadow: none; width: 800px; margin-right: 40px; height: 690px; margin-top: -1px;border-radius:16px" class="card">
+                            <a class="nav-item nav-link active" href="{% url 'agencia' %}" style="margin-left: 0px;width:100px;color:#0152a1;border-bottom: 2px solid orange; font-weight: bold;font-size:16px;">Dados Gerais</a>
+                            <a class="nav-item nav-link" href="{% url 'agente' %}" style="margin-left: 110px;margin-top: -24px;width:110px;color:#0152a1;">Dados Agente</a>
+
+
+                              
+                              <!-- Modal -->
+                              <div class="modal fade" id="minha_caixa" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content" style="width:550px;">
+                                    <div class="modal-header">
+                                        <h3 style="color:#0152a1;margin-left:20px;">Selecionar Agência</h3>
+                                        <button style="background-color:white;border:none;margin-top:-30px;" type="button" class="close" data-bs-dismiss="modal" aria-label="Fechar">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div id="tabela-container" class="modal-body">
+                                        <form id="consultaForm">
+                                            <div class="form-group col-sm-6 flex-column d-flex" > <label class="form-control-label px-3"><span class="text-danger" style="color:#0152a1 !important;margin-left:-150px; font-size:16px;font-weight: bold;">Agencia</span></label><input id="consultaInput" style="width: 300px; margin-left: 18px;"  type="text" class="form-control" name="consulta" aria-label="Recipient's username" aria-describedby="basic-addon2" hx-get="#tabela" hx-select="#tabela" hx-target="#modals" hx-trigger="input delay:0.2s" ></div>
+                                            <button class="btn btn-primary" type="submit" style="width:95px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important; margin-left:240px;height:28px;font-size: 11px !important; font-weight: bold;margin-top:-70px;">Pesquisar</button>
+                                        </form>
+                                        <div style="width: 100%; height:80%; " >
+                                                
+                            
+                                                    <table id="tabela"  style="width: 90%; margin-left: 20px; margin-top: 20px;" class="table">
+                                                        <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col" style="text-align:left;">Codigo</th>
+                                                            <th scope="col">Agência</th>
+                                                            <th scope="col">Cnpj</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                    </tbody>
+                                                </table>
+
+                            
+                                        </div>
+                            
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background-color:#0152a1 !important;height:28px; font-size: 11px !important; font-weight: bold;">Fechar</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <script src="https://code.jquery.com/jquery-3.5.1.js" 
+                              integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" 
+                                crossorigin="anonymous"></script>
+                      
+                            <script>
+                                    $(document).on('submit','#teste',function(e){
+                                        e.preventDefault();
+                                        $.ajax({
+                                            type:'POST',
+                                            url:'{% url "agencia" %}',
+                                            data:
+                                            {
+                                            task:$("#task").val(),
+                                            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                                            },
+                                            success:function(){
+                                            alert('Saved');
+                                            }
+                                        })
+                                    });
+
+                            </script>
+                            <form id="cadastro" class="form-card" method="post" action="{% url 'agencia'%}">
+                                {% csrf_token %}
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-sm-6 flex-column d-flex" style="margin-top:14px;"> <label class="form-control-label px-3" style='text-align:left;'><span class="text-danger" style="color:#0152a1 !important;margin-left:-14px;font-weight:bold;" id="codigo"> Codigo</span></label> <input style=" color: black; width:150px;height:36px; margin-top:0px;" type="text" id="fname" name="codigo" readonly> </div>
+                                    <div class="form-group col-sm-6 flex-column d-flex" style="margin-left:-170px;margin-top:14px;"><span class="text-danger" style="color:#0152a1 !important;margin-left:-680px; font-size:16px;font-weight:bold;" id="spansitu"> Situação</span>
+                                        <select id="ativo" name="situacao" style="height: 36px;margin-top: 0px;  color:  black;margin-left:-202px; width:190px" class="form-select" aria-label="Default select example">
+                                            <option value="V" selected>ATIVO</option>
+                                            <option value="F">INATIVO</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger" style="color:#0152a1 !important;margin-left:-174px; font-size:16px;font-weight: bold"></span></label> <button class="btn btn-light btn-sm" type='submit' style="width:88px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important; margin-left:380px;height:26px;font-size: 11px !important; font-weight: bold;margin-top:-55px;" id="tst" hx-select="#minha_caixa" hx-trigger="click"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLongoExemplo" >Pesquisar</button> </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-6 flex-column d-flex"> <label id="labeagen" class="form-control-label px-3"style="margin-top:14px;text-align:left;"><span class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold;" id="agencia">Agência Viagem</span></label> <input style="height:36px; width:500px;" type="text" id="agenciainp" name="age_viagem" oninput="this.value = this.value.toUpperCase()" required autocomplete="off"> </div>
+                                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:13px; font-size:16px;font-weight: bold;" id="spancnpj">Cnpj</span></label> <input style="color: black;height:36px;width:180px; margin-left:160px;" type="text" id="cnpjinp" name="cnpj" oninput="this.value = this.value.toUpperCase()" required minlength="14" maxlength="14" autocomplete="off"> </div>
+
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-6 flex-column d-flex"> <label id="agensite" class="form-control-label px-3"style="margin-top:14px;text-align:left;"><span id="spanagesite" class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold;" >Agência Site</span></label> <input style="color: black;height:36px; width:500px;" type="text" id="agesiteinp" name="age_site" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:126px; font-size:16px;font-weight: bold;" id="insspan">Inscrição Municipal</span></label> <input id="insinp" style="color: black;height:36px;width:180px; margin-left:160px;" type="text" id="email" name="inscricao" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-4 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px;text-align:left;"><span class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold" id="spancep">Cep</span></label> <input style=" color: black;height:36px;width:286px;" type="text" id="cepinp" name="cep" oninput="this.value = this.value.toUpperCase()" autocomplete="off" > </div>
+                                    <div class="form-group col-4 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-64px; font-size:16px;font-weight: bold" id="spanrua">Rua</span></label> <input style=" color: black;height:36px;width:285px;margin-left:63px;" type="text" id="ruainp" name="rua" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                    <div class="form-group col-4 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px" id="labenum"><span class="text-danger" style="color:#0152a1 !important;margin-left:88px; font-size:16px;font-weight: bold" id="spanum">Numero</span></label> <input style=" color: black;height:36px;width:94px;margin-left:121px" type="text" id="inpnum" name="numero" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-4 flex-column d-flex"> <label class="form-control-label px-3"style="margin-top:14px;text-align:left;"><span class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold;" id="spanbai">Bairro</span></label> <input style="color: black;height:36px; width:286px;" type="text" id="baiinp" name="bairro" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                    <div class="form-group col-sm-4 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-539px; font-size:16px;font-weight: bold;" id="spancid">Cidade</span></label> <input style="color: black;height:36px;width:285px; margin-left:-185px;" type="text" id="cidinp" name="cidade" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3"style="margin-top:14px;text-align:left;"><span class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold;" id="contato" >Fone</span></label> <input style="color: black;height:36px; width:130px;" type="text" id="job" name="fone" oninput="this.value = this.value.toUpperCase()"  autocomplete="off"> </div>
+                                    <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-44px; font-size:16px;font-weight: bold;" id="contato" >Celular</span></label> <input style="color: black;height:36px;width:130px; margin-left:0px;" type="text" id="email" name="celular" oninput="this.value = this.value.toUpperCase()"  autocomplete="off"> </div>
+                                    <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-24px; font-size:16px;font-weight: bold;" id="contato" >Comissão</span></label> <input style="color: black;height:36px;width:130px; margin-left:0px;" type="text" id="email" name="comissao" oninput="this.value = this.value.toUpperCase()" required autocomplete="off"> </div>                                                                       
+                                    <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-60px; font-size:16px;font-weight: bold;" id="contato" >Over</span></label> <input style="color: black;height:36px;width:130px; margin-left:0px;" type="text" id="email" name="over" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                    <div class="form-group col-sm-2 flex-column d-flex"> <label class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-34px; font-size:16px;font-weight: bold;" id="contato" >Markup</span></label> <input style="color: black;height:36px;width:94px; margin-left:-4px;" type="text" id="email" name="markup" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                        <div class="form-group col-4 flex-column d-flex">
+                                            <label class="form-control-label px-3" style="margin-top:14px;text-align:left;">
+                                                <span id="spanbanco"class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold">Banco</span>
+                                            </label>
+                                            <select id="bancosele" name="banco" style="color: black;height:36px;width:280px;" class="form-select" aria-label="Default select example">
+                                                <option value="Santander">SANTANDER</option>
+                                                <option value="Caixa">CAIXA ECONÔMICA FEDEREAL</option>
+                                                <option value="Bradesco">BRADESCO</option>
+                                            </select>
+                                        </div>
+                                    <div class="form-group col-4 flex-column d-flex" style="width:150px;"> <label id="labeagencia" class="form-control-label px-3" style="margin-top:14px"><span id="spanage" class="text-danger" style="color:#0152a1 !important;margin-left:-34px; font-size:16px;font-weight: bold">Agência</span></label> <input id="ageninp" style=" color: black;height:36px;width:130px;margin-left:13px;" type="text" id="ans" name="agencia" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                    <div class="form-group col-4 flex-column d-flex"> <label id="labeconta" class="form-control-label px-3" style="margin-top:14px"><span class="text-danger" style="color:#0152a1 !important;margin-left:-238px; font-size:16px;font-weight: bold" id="spancorrente">Conta</span></label> <input id="containp"  style=" color: black;height:36px;width:244px;margin-left:-31px" type="text" id="ans" name="conta" oninput="this.value = this.value.toUpperCase()" autocomplete="off"> </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                </div>
+                                    <button id="cadas" type="submit" class="btn mt-4" style="width: 200px;color: #e87717;margin-right:0px;" value="Cadastrar">Cadastrar</button>
+                                    <input id="limpar" type="reset" class="btn mt-4" style="color: #e87717;margin-right:0px;" value="Limpar">
+                                </div>
+                                <div class="row justify-content-end">
+    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="confirmodal" tabindex="-1" role="dialog" aria-labelledby="TituloModalLongoExemplo" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content" style="width:550px;">
+                    <div class="modal-header" >
+                        <h5 style="margin-left:20px;color:#0152a1;">Cadastro de Agência - Inserção </h5>
+                        <button style="background-color:white;border:none;margin-top:-21px;" type="button" class="close" data-bs-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="modals" class="modal-body" >
+                        <div style=" width:100%; height:70px; border-radius:10px;">
+                            <div style="padding-top:20px;">
+                                <span style="margin-left:23px;" id='resultado'> Cadastro feito com sucesso </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-secondary" style="width:100px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important;height:28px;font-size: 11px !important; font-weight: bold;" href="#" id="closemodals">Ok</a>
+                    </div>
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+            <script>
+                    $(document).ready(function() {
+                        $('#tst').click(function() {
+                            $('#minha_caixa').modal('show');  // Abre o modal
+                            $.ajax({
+                                url: '{% url "consulta" %}',
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(data) {
+                                    // Limpa a lista de cadastros existente
+                                    $('#tabela tbody').empty();
+                                    // Adiciona os novos cadastros ao modal
+                                    for (let cadastro of data.novos_cadastros) {
+                                        if (cadastro.age_codigo ) {
+                                            let url = '/relacao/' + cadastro.age_codigo;
+                                            let linha = '<tr>' +
+                                                        '<td><a style="text-decoration: none; color: black;" href="'+ url + '">' + cadastro.age_codigo + '</a></td>' +
+                                                        '<td>' + cadastro.age_cnpj + '</td>' +
+                                                        '<td>' + cadastro.age_inscricaomunicipal + '</td>' +
+                                                        '<td>' + cadastro.age_observacao + '</td>' +
+                                                    '</tr>';
+                                            $('#tabela tbody').append(linha);
+                                        }
+                                    }
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        });
+                
+                        // Fecha o modal quando o botão de fechar é clicado
+                        $('.fechar_modal').click(function() {
+                            $('#minha_caixa').hide();
+                        });
+                    });
+                   
+        </script>
+<script>
+    $(document).ready(function() {
+        var consultaEmAndamento = false;
+
+        $('#consultaForm').submit(function(event) {
+            event.preventDefault();
+
+            if (consultaEmAndamento) {
+                return;
+            }
+
+            consultaEmAndamento = true;
+            var consulta = $('#consultaInput').val();
+
+            $.ajax({
+                url: '/consulta/',
+                method: 'GET',
+                data: { consulta: consulta },
+                success: function(response) {
+                    $('#tabela tbody').empty();
+                    var contador = 0; // Variável para contar as linhas
+
+                    for (let cadastro of response.resultados) {
+                        if (contador >= 10) {
+                            break; // Sai do loop depois de 10 iterações
+                        }
+
+                        var urleditar = '/relacao/' + cadastro.age_codigo + '/';
+                        var urlExcluir = '/excluir/' + cadastro.age_codigo + '/';
+                        var url = '/relacao/' + cadastro.age_codigo;
+                        var linha = '<tr>' +
+                                    '<td><a style="text-decoration: none; color:#0152a1 ;" href="' + url + '">' + cadastro.age_codigo + '</a></td>' +
+                                    '<td>' + cadastro.age_viagem + '</td>' +
+                                    '<td>' + cadastro.age_cnpj + '</td>' +
+                                    '</tr>';
+                        $('#tabela tbody').append(linha);
+                        
+                        contador++; // Incrementa o contador
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                },
+                complete: function() {
+                    consultaEmAndamento = false;
+                }
+            });
+        });
+    });
+</script>        
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // Pega o elemento do input
+    var input = document.getElementById('agenciainp');
+
+    // Pega o elemento do parágrafo
+    var resultado = document.getElementById('resultado');
+
+    // Adiciona um listener para o evento 'input' no input
+    input.addEventListener('input', function() {
+        // Define o texto do parágrafo como o valor do input
+        resultado.textContent = input.value + " - Cadastro Realizado Com Sucesso";
+    });
+$(document).ready(function() {
+    $('#cepinp').on('input', function() {
+        var cep = $(this).val().replace(/\D/g, '');
+        if (cep.length === 8) {
+            $.ajax({
+                url: '/cep/',
+                method: 'GET',
+                data: { cep: cep },
+                success: function(response) {
+                    $('#ruainp').val(response.logradouro);
+                    $('#baiinp').val(response.bairro);
+                    $('#cidinp').val(response.cidade);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    });
+});
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#cadastro').submit(function(event) {
+            // Impede o envio do formulário padrão
+            event.preventDefault();
+            // Faz a requisição AJAX para cadastrar a agência
+            $.ajax({
+                url: '{% url "agencia" %}', // Substitua pela URL correta da sua view de cadastro
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function(response) {
+                    var novoId = response.age_codigo;
+                    // Armazena o ID retornado em um atributo de um elemento HTML, por exemplo, no body
+                    $('body').data('novoId', novoId);
+                    $('#fname').val(response.age_codigo);
+                    $('#confirmodal').modal('show');
+                    $('#closemodals').click(function() {
+                        $('#confirmodal').modal('hide');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Erro na requisição AJAX:', error);
+                    alert('Erro ao cadastrar agência. Verifique o console para mais detalhes.');
+                }
+            });
+        });
+    
+        // Quando o modal estiver completamente oculto, redireciona para a página de 'relacao' com o ID retornado
+        $('#confirmodal').on('hidden.bs.modal', function () {
+            var novoId = $('body').data('novoId');
+            if (novoId) {
+                window.location.href = '/relacao/' + novoId; // Substitua '/relacao/' pela URL correta da sua view de destino
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+      $('#sair').click(function(event) {
+        event.preventDefault(); // Previne o comportamento padrão do link
+        $('#sairmodal').modal('show'); // Abre o modal
+      });
+    $('#closemodal').click(function(event) {
+        $('#sairmodal').modal('hide'); // Fecha o modal
+      });
+    });
+</script>
