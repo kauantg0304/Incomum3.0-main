@@ -435,40 +435,53 @@ $(document).ready(function() {
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#cadastro').submit(function(event) {
-            // Impede o envio do formulário padrão
-            event.preventDefault();
-            // Faz a requisição AJAX para cadastrar a agência
-            $.ajax({
-                url: '{% url "agencia" %}', // Substitua pela URL correta da sua view de cadastro
-                method: 'POST',
-                data: $(this).serialize(),
-                success: function(response) {
-                    var novoId = response.age_codigo;
-                    // Armazena o ID retornado em um atributo de um elemento HTML, por exemplo, no body
-                    $('body').data('novoId', novoId);
-                    $('#fname').val(response.age_codigo);
-                    $('#confirmodal').modal('show');
-                    $('#closemodals').click(function() {
-                        $('#confirmodal').modal('hide');
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error('Erro na requisição AJAX:', error);
-                    alert('Erro ao cadastrar agência. Verifique o console para mais detalhes.');
-                }
-            });
-        });
-    
-        // Quando o modal estiver completamente oculto, redireciona para a página de 'relacao' com o ID retornado
-        $('#confirmodal').on('hidden.bs.modal', function () {
-            var novoId = $('body').data('novoId');
-            if (novoId) {
-                window.location.href = '/relacao/' + novoId; // Substitua '/relacao/' pela URL correta da sua view de destino
+$(document).ready(function() {
+    // Variável de controle para verificar se o evento de envio do formulário já foi anexado
+    var formularioEnviado = false;
+
+    // Função para enviar a requisição AJAX quando o formulário for enviado
+    function enviarRequisicaoAJAX() {
+        // Impede o envio do formulário padrão
+        event.preventDefault();
+        // Faz a requisição AJAX para cadastrar a agência
+        $.ajax({
+            url: '{% url "agencia" %}', // Substitua pela URL correta da sua view de cadastro
+            method: 'POST',
+            data: $('#cadastro').serialize(),
+            success: function(response) {
+                var novoId = response.age_codigo;
+                // Armazena o ID retornado em um atributo de um elemento HTML, por exemplo, no body
+                $('body').data('novoId', novoId);
+                $('#fname').val(response.age_codigo);
+                $('#confirmodal').modal('show');
+                $('#closemodals').click(function() {
+                    $('#confirmodal').modal('hide');
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Erro na requisição AJAX:', error);
+                alert('Erro ao cadastrar agência. Verifique o console para mais detalhes.');
             }
         });
+    }
+
+    // Anexa o evento de envio do formulário apenas se ainda não tiver sido anexado
+    if (!formularioEnviado) {
+        $('#cadastro').submit(function(event) {
+            enviarRequisicaoAJAX();
+        });
+        formularioEnviado = true; // Define a variável de controle como verdadeira para indicar que o evento foi anexado
+    }
+
+    // Quando o modal estiver completamente oculto, redireciona para a página de 'relacao' com o ID retornado
+    $('#confirmodal').on('hidden.bs.modal', function () {
+        var novoId = $('body').data('novoId');
+        if (novoId) {
+            window.location.href = '/relacao/' + novoId; // Substitua '/relacao/' pela URL correta da sua view de destino
+        }
     });
+});
+
 </script>
 <script>
     $(document).ready(function() {
