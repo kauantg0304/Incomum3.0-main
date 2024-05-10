@@ -26,7 +26,10 @@
                 
 
                 <div class="collapse navbar-collapse " id="nav-menus"  >
-                    <a id="sair" href="#" style="height: 34px !important; background-color: #0152a1 !important; border: #e87717 !important; margin-left: 1220px;" class="btn btn-primary">Logout</a>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" style="height: 34px !important; background-color: #0152a1 !important; border: #e87717 !important; margin-left: 1220px;" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
               
 
