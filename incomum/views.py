@@ -51,7 +51,7 @@ def logado(request):
 @login_required()
 def logout_view(request):
     logout(request)
-    return render(request,'index.html')
+    return redirect('home')
 @login_required(login_url='home')
 def agencia(request):
     txt_nome=request.GET.get('consulta')
