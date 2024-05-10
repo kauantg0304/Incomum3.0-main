@@ -29,8 +29,8 @@
                     <div class="navbar-nav " id="navbarNav">
 
                         <form action="{% url 'logout' %}" method="post">
-                        {% csrf_token %}
-                            <a id="sair" href="#" style="height: 34px !important; background-color: #0152a1 !important; border: #e87717 !important; margin-left: 1220px;" class="btn btn-primary">Logout</a>
+                            {% csrf_token %}
+                            <button type="submit" style="height: 34px !important; background-color: #0152a1 !important; border: #e87717 !important; margin-left: 1220px;" class="btn btn-primary">Logout</button>
                         </form>
 
                     </div>
