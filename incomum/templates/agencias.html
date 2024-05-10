@@ -260,7 +260,7 @@
                                             <option value="F" {% if agencia.age_situacao == 'F' %} selected {% endif %}>INATIVO</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger" style="color:#0152a1 !important;margin-left:-164px; font-size:16px;font-weight: bold"></span></label> <button class="btn btn-light btn-sm" type='submit' style="width:88px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important; margin-left:370px;height:26px;font-size: 11px !important; font-weight: bold;margin-top:-55px;" id="tst" hx-select="#minha_caixa" hx-trigger="click"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLongoExemplo" >Pesquisar</button> </div>
+                                    <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger" style="color:#0152a1 !important;margin-left:-164px; font-size:16px;font-weight: bold"></span></label> <button class="btn btn-light btn-sm" type='submit' style="width:88px; background-color:#0152a1 !important;border-color:#0152a1;color:white !important; margin-left:370px;height:26px;font-size: 11px !important; font-weight: bold;margin-top:-55px;" id="tst" hx-select="#minha_caixa" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLongoExemplo" >Pesquisar</button> </div>
                                 </div>
                                 <div class="row justify-content-between text-left">
                                     <div class="form-group col-6 flex-column d-flex"> <label id="labeagen" class="form-control-label px-3"style="margin-top:14px;text-align:left;"><span class="text-danger" style="color:#0152a1 !important;margin-left:-14px; font-size:16px;font-weight: bold;" id="agencia">Agência Viagem</span></label> <input style="color: black;height:36px; width:500px;" type="text" id="agenciainp" name="age_viagem" value="{{agencia.age_viagem}}" > </div>
@@ -380,64 +380,67 @@
         </script>
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#cadastro').submit(function(event) {
-            event.preventDefault();  // Impede o comportamento padrão do formulário
+            <script>
+                $(document).ready(function() {
+                    $('#cadastro').submit(function(event) {
+                        event.preventDefault();  // Impede o comportamento padrão do formulário
+        
+                        $.ajax({
+                            type: 'POST',
+                            url: '{% url "relacao" age_codigo=agencia.age_codigo %}',
+                            data: $(this).serialize(),
+                            success: function(data) {
+                                event.preventDefault();
+                                $('#confirmodal').modal('show');
 
-            $.ajax({
-                type: 'POST',
-                url: '{% url "relacao" age_codigo=agencia.age_codigo %}',
-                data: $(this).serialize(),
-                success: function(data) {
-                    // Lógica para o que fazer após o sucesso
-                    $('#confirmodal').modal('show');
-                    $('#closemodals').click(function() {
-                        $('#confirmodal').modal('hide');
+                                // Lógica para o que fazer após o sucesso
+                            },
+                            error: function(data) {
+                                // Lógica para o que fazer em caso de erro
+                            }
+                        });
                     });
-                },
-                error: function(data) {
-                    // Lógica para o que fazer em caso de erro
-                }
-            });
-        });
-
-        $('#tst').click(function() {
-            $('#minha_caixa').modal('show');  // Abre o modal
-            $.ajax({
-                url: '{% url "consulta" %}',
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    // Limpa a lista de cadastros existente
-                    $('#tabela tbody').empty();
-                    // Adiciona os novos cadastros ao modal
-                    for (let cadastro of data.novos_cadastros) {
-                        if (cadastro.age_codigo) {
-                            let url = '/relacao/' + cadastro.age_codigo;
-                            let linha = '<tr>' +
-                                '<td><a style="text-decoration: none; color: black;" href="' + url + '">' + cadastro.age_codigo + '</a></td>' +
-                                '<td>' + cadastro.age_cnpj + '</td>' +
-                                '<td>' + cadastro.age_inscricaomunicipal + '</td>' +
-                                '<td>' + cadastro.age_observacao + '</td>' +
-                                '</tr>';
-                            $('#tabela tbody').append(linha);
-                        }
-                    }
-                },
-                error: function(error) {
-                    console.log(error);
-                }
-            });
-        });
-
-        // Fecha o modal quando o botão de fechar é clicado
-        $('.fechar_modal').click(function() {
-            $('#minha_caixa').hide();
-        });
-    });
-</script>
-
+                });
+            </script>
+            <script>
+                    $(document).ready(function() {
+                        $('#tst').click(function() {
+                            event.preventDefault();
+                            $('#minha_caixa').modal('show');  // Abre o modal
+                            $.ajax({
+                                url: '{% url "consulta" %}',
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(data) {
+                                    // Limpa a lista de cadastros existente
+                                    $('#tabela tbody').empty();
+                                    // Adiciona os novos cadastros ao modal
+                                    for (let cadastro of data.novos_cadastros) {
+                                        if (cadastro.age_codigo ) {
+                                            let url = '/relacao/' + cadastro.age_codigo;
+                                            let linha = '<tr>' +
+                                                        '<td><a style="text-decoration: none; color: black;" href="'+ url + '">' + cadastro.age_codigo + '</a></td>' +
+                                                        '<td>' + cadastro.age_cnpj + '</td>' +
+                                                        '<td>' + cadastro.age_inscricaomunicipal + '</td>' +
+                                                        '<td>' + cadastro.age_observacao + '</td>' +
+                                                    '</tr>';
+                                            $('#tabela tbody').append(linha);
+                                        }
+                                    }
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        });
+                
+                        // Fecha o modal quando o botão de fechar é clicado
+                        $('.fechar_modal').click(function() {
+                            $('#minha_caixa').hide();
+                        });
+                    });
+                   
+        </script>
 <script>
     $(document).ready(function() {
         var consultaEmAndamento = false;
@@ -522,4 +525,19 @@ $(document).ready(function() {
       });
     });
 </script>
- 
+<script>
+    $(document).ready(function() {
+        // Quando o botão de editar é clicado
+        $('#Cadastrar').click(function(event) {
+            event.preventDefault(); // Impede o comportamento padrão do link ou botão
+
+            // Abre o modal de confirmação
+            $('#confirmodal').modal('show');
+        });
+
+        // Quando o botão de fechar do modal é clicado
+        $('#closemodals').click(function() {
+            $('#confirmodal').modal('hide'); // Fecha o modal
+        });
+    });
+</script>
